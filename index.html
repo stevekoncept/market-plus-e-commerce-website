@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Market-Plus | The best Online Store</title>
+  </head>
+  <body>
+    <!-- Page behind the modal (just for context/backdrop) -->
+    <div class="page-backdrop"></div>
+
+    <!-- ===================== CART MODAL ===================== -->
+    <div class="cart-overlay hidden" id="cartModal">
+      <div class="cart">
+        <!-- Header -->
+        <div class="cart-header">
+          <h2 class="cart-title">My Cart</h2>
+          <button
+            class="icon-btn close-btn"
+            id="closeCart"
+            aria-label="Close cart"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Cart item -->
+        <div class="cart-body">
+          <p class="empty-cart-text">No items added to cart</p>
+          <div class="cart-item">
+            <div class="cart-item-image">
+              <img
+                src="https://placehold.co/100x100/e8e8e8/999?text=gadget"
+                alt="gadget"
+              />
+            </div>
+
+            <div class="cart-item-info">
+              <p class="cart-item-name">Heavy bass speaker</p>
+              <p class="cart-item-">&#8358;0.00</p>
+
+              <div class="quantity-control">
+                <button class="qty-btn qty-btn-minus" id="qtyMinus">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <span class="qty-value" id="qtyValue">1</span>
+                <button class="qty-btn qty-btn-plus" id="qtyPlus">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <button
+              class="icon-btn delete-btn"
+              id="deleteItem"
+              aria-label="Remove item"
+            >
+              <i class="fa-solid fa-trash-can"></i></button
+            >price
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="cart-footer">
+          <div class="total-row">
+            <span class="total-label">Total</span>
+            <span class="total-value">&#8358;0.00</span>
+          </div>
+          <button class="primary-btn" id="proceedBtn">Proceed</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== CHECKOUT cart ===================== -->
+    <div class="cart-overlay" id="checkoutModal" style="display: none">
+      <div class="cart">
+        <!-- Header -->
+        <div class="cart-header">
+          <button class="icon-btn back-btn" id="backToCart" aria-label="Back">
+            <i class="fa-solid fa-angle-left"></i>
+          </button>
+          <h2 class="cart-title">Checkout</h2>
+          <button
+            class="icon-btn close-btn"
+            id="closeCheckout"
+            aria-label="Close checkout"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Scrollable form body -->
+        <div class="cart-body checkout-body">
+          <h3 class="section-title">Your Details</h3>
+
+          <form id="checkoutForm">
+            <div class="form-row">
+              <div class="form-group2">
+                <div>
+                  <label for="firstName">First name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Enter your last name..."
+                  />
+                </div>
+                <div>
+                  <label for="lastName">Last name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Enter your last name..."
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="" />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="" />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="address">Delivery Address</label>
+              <textarea id="address" name="address" rows="3"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group2">
+                <div>
+                  <label for="state">State</label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    placeholder="Enter your state..."
+                  />
+                </div>
+                <div>
+                  <label for="city">City</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    placeholder="Enter your city..."
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="cart-footer">
+          <button
+            class="primary-btn"
+            id="checkoutSubmit"
+            type="submit"
+            form="checkoutForm"
+          >
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <nav id="nav" class="nav-section">
+      <header class="container nav-cell custom-flex">
+        <h1>MARKET+</h1>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#best">Best sellers</a></li>
+          <li><a href="#items">Available items</a></li>
+        </ul>
+
+        <i class="fa-solid fa-cart-plus cart-btn custom-icon-style"></i>
+      </header>
+    </nav>
+    <main id="home" class="container hero-section">
+      <div class="hero-text">
+        <h1>The Best Store For Your Gadgets</h1>
+        <div>
+          <div class="hero-input">
+            <input type="text" placeholder="Search for any product here..." />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </main>
+    <section id="best" class="container section--1">
+      <div class="custom-grid-3">
+        <h2>Best Sellers</h2>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/Galaxy 22 ultra.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Galaxy 22 ultra</h3>
+              <p class="product-amount">₦510,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/galaxy m13.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Galaxy m13</h3>
+              <p class="product-amount">₦310,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/galaxy m23.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Galaxy m23</h3>
+              <p class="product-amount">₦350,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--  -->
+    <section class="container section--2">
+      <div class="slider">
+        <div class="banner banner--iphone">
+          <div class="banner-content">
+            <span class="banner-badge"><p>IPHONE</p></span>
+            <div class="banner-logo">
+              <i class="fa-brands fa-apple"></i>
+            </div>
+            <p class="banner-offer">UP to 80% OFF</p>
+          </div>
+
+          <div class="banner-image-space">
+            <img src="images/iphone 13.png" alt="iphone 13" />
+          </div>
+          <img src="images/iphone bg.png" alt="shape" class="banner-bg" />
+        </div>
+
+        <div class="banner banner--realme">
+          <div class="banner-content">
+            <span class="banner-badge"><p>REALME</p></span>
+            <div class="banner-logo">
+              <span class="realme-logo-text"><p>realme</p></span>
+            </div>
+            <p class="banner-offer">UP to 80% OFF</p>
+          </div>
+
+          <div class="banner-image-space">
+            <img src="images/realme.png" alt="realme" />
+          </div>
+          <img src="images/realme bg.png" alt="shape" class="banner-bg" />
+        </div>
+
+        <div class="banner banner--xiaomi">
+          <div class="banner-content">
+            <span class="banner-badge"><p>XIAOMI</p></span>
+            <div class="banner-logo">
+              <span class="xiaomi-logo-box"><p>MI</p></span>
+            </div>
+            <p class="banner-offer">UP to 80% OFF</p>
+          </div>
+
+          <div class="banner-image-space">
+            <img src="images/redmi note 10 pro.png" alt="redmi note 10 pro" />
+          </div>
+          <img src="images/redmi bg.png" alt="shape" class="banner-bg" />
+        </div>
+      </div>
+      <button class="slider__btn slider--left">&larr;</button>
+      <button class="slider__btn slider--right">&rarr;</button>
+      <div class="dots"></div>
+    </section>
+
+    <!--  -->
+    <section id="items" class="container section--3">
+      <div class="custom-grid-3">
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/iphone 13.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Iphone 13</h3>
+              <p class="product-amount">₦450,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/realme.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Realme</h3>
+              <p class="product-amount">₦230,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/redmi note 10 pro.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Redmi note 10 pro</h3>
+              <p class="product-amount">₦250,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/washing machine.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Washing machine</h3>
+              <p class="product-amount">₦250,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/watch.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Smart watch</h3>
+              <p class="product-amount">₦23,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+        <div class="product-box">
+          <div class="product-img">
+            <img src="images/galaxy m33.png" alt="product" />
+          </div>
+          <div class="price-box">
+            <div>
+              <h3 class="product-desc">Galaxy m33</h3>
+              <p class="product-amount">₦230,000</p>
+            </div>
+            <button id="order-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="container footer-section">
+      <p>Copyright © 2026</p>
+      <p>All rights reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
