@@ -20,6 +20,11 @@
     <title>Market-Plus | The best Online Store</title>
   </head>
   <body>
+    <div class="custom-alert">
+      <i class="fa-regular fa-circle-check success-icon"></i>
+      <i class="fa-regular fa-circle-xmark failure-icon"></i>
+      <p class="alert-text">Success transaction</p>
+    </div>
     <!-- Page behind the modal (just for context/backdrop) -->
     <div class="page-backdrop"></div>
 
@@ -194,7 +199,7 @@
         </ul>
         <div class="cart-box">
           <i class="fa-solid fa-cart-plus cart-btn custom-icon-style"></i>
-          <div class="cart-item-count" style="visibility: hidden;"></div>
+          <div class="cart-item-count" style="visibility: hidden"></div>
         </div>
       </header>
     </nav>
@@ -202,7 +207,10 @@
       <div class="hero-text">
         <h1>The Best Store For Your Gadgets</h1>
         <div>
-          <div class="search-bar">
+          <p class="hero-desc">
+            Shop your gadgets from the comfort of your home and it will be delivered at your doorstep
+          </p>
+          <!-- <div class="search-bar">
             <input
               type="text"
               class="search-input"
@@ -211,7 +219,7 @@
             <button class="search-btn" aria-label="Search">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
-          </div>
+          </div> -->
           <!-- <div class="hero-input">
             <input type="text" placeholder="Search for any product here..." />
           </div> -->
@@ -308,8 +316,12 @@
           <img src="images/redmi bg.png" alt="shape" class="banner-bg" />
         </div>
       </div>
-      <button class="slider__btn slider--left">&larr;</button>
-      <button class="slider__btn slider--right">&rarr;</button>
+      <button class="slider__btn slider--left">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button class="slider__btn slider--right">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
       <div class="dots"></div>
     </section>
 
@@ -354,12 +366,12 @@
         </div>
         <div class="product-box">
           <div class="product-img">
-            <img src="images/washing machine.png" alt="product" />
+            <img src="images/iphone 12.png" alt="product" />
           </div>
           <div class="price-box">
             <div>
-              <h3 class="product-desc">Washing machine</h3>
-              <p class="product-amount">₦250,000</p>
+              <h3 class="product-desc">Iphone 12</h3>
+              <p class="product-amount">₦320,000</p>
             </div>
             <button id="order-btn">Add to cart</button>
           </div>
