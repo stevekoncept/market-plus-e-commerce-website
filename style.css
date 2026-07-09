@@ -382,12 +382,6 @@ input:focus {
   /* transform: translateX(500px); */
 }
 
-@media (max-width: 480px) {
-  .cart {
-    width: 100vw;
-  }
-}
-
 /* ===================== Header ===================== */
 .cart-header {
   display: flex;
@@ -986,5 +980,9 @@ input:focus {
   }
   .xiaomi-logo-box p {
     font-size: 2rem;
+  }
+  .cart {
+    width: 100vw;
+    height: 90vh;
   }
 }
