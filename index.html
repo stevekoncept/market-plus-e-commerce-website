@@ -24,64 +24,63 @@
     <div class="page-backdrop"></div>
 
     <!-- ===================== CART MODAL ===================== -->
-    <div class="cart-overlay hidden" id="cartModal">
-      <div class="cart">
-        <!-- Header -->
-        <div class="cart-header">
-          <h2 class="cart-title">My Cart</h2>
+
+    <div class="cart">
+      <!-- Header -->
+      <div class="cart-header">
+        <h2 class="cart-title">My Cart</h2>
+        <button
+          class="icon-btn close-btn"
+          id="closeCart"
+          aria-label="Close cart"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Cart item -->
+      <div class="cart-body">
+        <p class="empty-cart-text">No items added to cart</p>
+        <!-- <div class="cart-item">
+          <div class="cart-item-image">
+            <img
+              src=""
+              alt="gadgets"
+            />
+          </div>
+
+          <div class="cart-item-info">
+            <p class="cart-item-name"></p>
+            <p class="cart-item-price">&#8358;0.00</p>
+
+            <div class="quantity-control">
+              <button class="qty-btn qty-btn-minus" id="qtyMinus">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <span class="qty-value" id="qtyValue">1</span>
+              <button class="qty-btn qty-btn-plus" id="qtyPlus">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
           <button
-            class="icon-btn close-btn"
-            id="closeCart"
-            aria-label="Close cart"
+            class="icon-btn delete-btn"
+            id="deleteItem"
+            aria-label="Remove item"
           >
-            <i class="fa-solid fa-xmark"></i>
+            <i class="fa-solid fa-trash-can"></i>
           </button>
+        </div> -->
+      </div>
+
+      <!-- Footer -->
+      <div class="cart-footer">
+        <div class="total-row">
+          <span class="total-label">Total</span>
+          <span class="total-value">₦0.00</span>
         </div>
-
-        <!-- Cart item -->
-        <div class="cart-body">
-          <p class="empty-cart-text">No items added to cart</p>
-          <div class="cart-item">
-            <div class="cart-item-image">
-              <img
-                src="https://placehold.co/100x100/e8e8e8/999?text=gadget"
-                alt="gadget"
-              />
-            </div>
-
-            <div class="cart-item-info">
-              <p class="cart-item-name">Heavy bass speaker</p>
-              <p class="cart-item-">&#8358;0.00</p>
-
-              <div class="quantity-control">
-                <button class="qty-btn qty-btn-minus" id="qtyMinus">
-                  <i class="fa-solid fa-minus"></i>
-                </button>
-                <span class="qty-value" id="qtyValue">1</span>
-                <button class="qty-btn qty-btn-plus" id="qtyPlus">
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-
-            <button
-              class="icon-btn delete-btn"
-              id="deleteItem"
-              aria-label="Remove item"
-            >
-              <i class="fa-solid fa-trash-can"></i></button
-            >price
-          </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="cart-footer">
-          <div class="total-row">
-            <span class="total-label">Total</span>
-            <span class="total-value">&#8358;0.00</span>
-          </div>
-          <button class="primary-btn" id="proceedBtn">Proceed</button>
-        </div>
+        <button class="primary-btn" id="proceedBtn">Proceed</button>
       </div>
     </div>
 
@@ -193,18 +192,29 @@
           <li><a href="#best">Best sellers</a></li>
           <li><a href="#items">Available items</a></li>
         </ul>
-
-        <i class="fa-solid fa-cart-plus cart-btn custom-icon-style"></i>
+        <div class="cart-box">
+          <i class="fa-solid fa-cart-plus cart-btn custom-icon-style"></i>
+          <div class="cart-item-count" style="visibility: hidden;"></div>
+        </div>
       </header>
     </nav>
     <main id="home" class="container hero-section">
       <div class="hero-text">
         <h1>The Best Store For Your Gadgets</h1>
         <div>
-          <div class="hero-input">
-            <input type="text" placeholder="Search for any product here..." />
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <div class="search-bar">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search for any product here...."
+            />
+            <button class="search-btn" aria-label="Search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
           </div>
+          <!-- <div class="hero-input">
+            <input type="text" placeholder="Search for any product here..." />
+          </div> -->
         </div>
       </div>
       <div class="overlay"></div>
@@ -384,7 +394,6 @@
       <p>Copyright © 2026</p>
       <p>All rights reserved</p>
     </footer>
-
     <script src="script.js"></script>
   </body>
 </html>
