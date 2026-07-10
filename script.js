@@ -264,6 +264,7 @@ const addToCart = function (productbox) {
   const showEmptyText = function () {
     if (cartBody.children.length - 1 === 0) {
       empty_cart_text.style.display = "flex";
+      proceedBtn.style.background = "#f4a97f";
     }
   };
   // delete button scoped to this cart item
@@ -275,7 +276,6 @@ const addToCart = function (productbox) {
     updateTotalPrice();
     saveCartToLocalStorage();
     showEmptyText();
-    proceedBtn.style.background = "#f4a97f";
   });
 
   // quantity controls scoped to this cart item
@@ -369,55 +369,105 @@ const loadCartFromLocalStorage = function () {
 };
 loadCartFromLocalStorage();
 // // //
+// proceedBtn.addEventListener("click", () => {
+//   // const cartBoxes = cart
+//   const cartBoxes = document.querySelectorAll(".cart-item");
+//   if (cartBoxes.length === 0) return;
+
+//   // cartBoxes.forEach((cartbox) => cartbox.remove());
+
+//   // cartItemCount = 0;
+
+//   // updateCartCount(0);
+
+//   // updateTotalPrice();
+//   // collect items BEFORE removing them
+
+//   cart.style.transform = "translateX(120%)";
+//   pageBackdrop.style.display = "none";
+
+//   successAlert(1000, [
+//     "Your order is being processed. Thank you for your patronage",
+//   ]);
+
+//   proceedBtn.style.background = "#f4a97f";
+//   localStorage.removeItem("cart");
+//   // successAlert(1000, [
+//   //   "Thank you for your patronage, you will be redirected in a second....",
+//   // ]);
+//   // //
+//   const redirectToWhatsapp = function () {
+//     const cartItems = [];
+//     document.querySelectorAll(".cart-item").forEach((item) => {
+//       cartItems.push({
+//         name: item.querySelector(".cart-item-name").textContent,
+//         price: item.querySelector(".cart-item-price").textContent,
+//         image: item.querySelector("img").src,
+//         quantity: item.querySelector(".qty-value").textContent,
+//       });
+//     });
+
+//     let message = `Hi, i want to pay for ${cartItems.name[0]}i need the account number`;
+
+//     let phoneNumber = "2347045170938"; // 👉 change to client number
+
+//     let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+//     window.open(url, "_blank");
+//   };
+//   redirectToWhatsapp();
+//   // redirectToWhatsapp(cartBox);
+
+//   //
+//   if (cartBody.children.length - 1 === 0) {
+//     empty_cart_text.style.display = "flex";
+//   }
+// });
+
+// ...existing code...
 proceedBtn.addEventListener("click", () => {
-  // const cartBoxes = cart
   const cartBoxes = document.querySelectorAll(".cart-item");
   if (cartBoxes.length === 0) return;
 
+  // collect items BEFORE removing them
+  const cartItems = [];
+  cartBoxes.forEach((cartbox) => {
+    cartItems.push({
+      name: cartbox.querySelector(".cart-item-name")?.textContent?.trim() || "",
+      price:
+        cartbox.querySelector(".cart-item-price")?.textContent?.trim() || "",
+      quantity: cartbox.querySelector(".qty-value")?.textContent?.trim() || "1",
+    });
+  });
+
+  successAlert(1000, [
+    "Your order is being processed. Thank you for your patronage",
+  ]);
+  // build message and open WhatsApp
+  setTimeout(() => {
+    const itemsText = cartItems
+      .map((it, i) => `${i + 1}. ${it.name} x${it.quantity} (${it.price})`)
+      .join("\n");
+    const message = `Hi, I want to pay for the following items:\n${itemsText}\nPlease send account details.`;
+    const phoneNumber = "2347045170938"; // change to client number
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  }, 1000);
+
+  // now remove items and update UI
   cartBoxes.forEach((cartbox) => cartbox.remove());
-
   cartItemCount = 0;
-
   updateCartCount(0);
-
   updateTotalPrice();
 
   cart.style.transform = "translateX(120%)";
   pageBackdrop.style.display = "none";
 
-  successAlert(1000, [
-    "Your order is being processed. Thank you for your patronage",
-  ]);
-
   proceedBtn.style.background = "#f4a97f";
   localStorage.removeItem("cart");
-  // successAlert(1000, [
-  //   "Thank you for your patronage, you will be redirected in a second....",
-  // ]);
-  // //
-  const redirectToWhatsapp = function () {
-    const cartItems = [];
-    document.querySelectorAll(".cart-item").forEach((item) => {
-      cartItems.push({
-        name: item.querySelector(".cart-item-name").textContent,
-        price: item.querySelector(".cart-item-price").textContent,
-        image: item.querySelector("img").src,
-        quantity: item.querySelector(".qty-value").textContent,
-      });
-    });
 
-    let message = `Hi, i want to pay for ${productItemName}i need the account number`;
-
-    let phoneNumber = "2347045170938"; // 👉 change to client number
-
-    let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(url, "_blank");
-  };
-  // redirectToWhatsapp(cartBox);
-
-  //
   if (cartBody.children.length - 1 === 0) {
     empty_cart_text.style.display = "flex";
   }
 });
+// ...existing code...
