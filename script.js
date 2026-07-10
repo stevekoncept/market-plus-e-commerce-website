@@ -180,12 +180,14 @@ addToCartBtn.forEach((button) => {
     const productBox = event.target.closest(".product-box");
     // console.log(productBox);
     addToCart(productBox);
+    // redirectToWhatsapp(productBox);
   });
 });
 
 const addToCart = function (productbox) {
   if (!productbox) return;
 
+  proceedBtn.style.background = "#f5701f";
   const productImgSrc = productbox.querySelector("img").src;
   const productItemName = productbox.querySelector(".product-desc").textContent;
   const productItemPrice =
@@ -237,6 +239,26 @@ const addToCart = function (productbox) {
   cartBody.appendChild(cartBox);
 
   successAlert(500, ["Item added to cart"]);
+  // // // // // // // // //
+  saveCartToLocalStorage();
+  // const setLocalStorage = function () {
+  //   localStorage.setItem("items", JSON.cartBox);
+  // };
+  // setLocalStorage();
+  // _getLocalStorage() {
+  //   const data = JSON.parse(localStorage.getItem('workouts'));
+
+  //   if (!data) return;
+
+  //   this.#workouts = data;
+
+  //   this.#workouts.forEach(work => this._renderWorkout(work));
+  // }
+
+  // reset() {
+  //   localStorage.removeItem('workouts');
+  //   location.reload();
+  // }
 
   // // // //
   const showEmptyText = function () {
@@ -251,8 +273,9 @@ const addToCart = function (productbox) {
     updateCartCount(-1);
 
     updateTotalPrice();
-
+    saveCartToLocalStorage();
     showEmptyText();
+    proceedBtn.style.background = "#f4a97f";
   });
 
   // quantity controls scoped to this cart item
@@ -310,14 +333,46 @@ const updateCartCount = (change) => {
     cartItemCountBadge.textContent = "";
   }
 };
+const saveCartToLocalStorage = function () {
+  const cartItems = [];
+  document.querySelectorAll(".cart-item").forEach((item) => {
+    cartItems.push({
+      name: item.querySelector(".cart-item-name").textContent,
+      price: item.querySelector(".cart-item-price").textContent,
+      image: item.querySelector("img").src,
+      quantity: item.querySelector(".qty-value").textContent,
+    });
+  });
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+};
+// // //
+const loadCartFromLocalStorage = function () {
+  const saved = localStorage.getItem("cart");
 
+  if (!saved) return;
+
+  const cartItems = JSON.parse(saved);
+  cartItems.forEach((item) => {
+    const productBox = document.createElement("div");
+    productBox.className = "product-box";
+    productBox.innerHTML = `
+      <img src="${item.image}" alt="product"/>
+      <span class="product-desc">${item.name}</span>
+      <span class="product-amount">${item.price}</span>
+    `;
+
+    addToCart(productBox);
+    const lastCartItem = document.querySelector(".cart-item:last-child");
+    const qtyEl = lastCartItem.querySelector(".qty-value");
+    qtyEl.textContent = item.quantity;
+  });
+};
+loadCartFromLocalStorage();
+// // //
 proceedBtn.addEventListener("click", () => {
   // const cartBoxes = cart
   const cartBoxes = document.querySelectorAll(".cart-item");
-  if (cartBoxes.length === 0) {
-    failureAlert(500, ["Add an item to cart"]);
-    return;
-  }
+  if (cartBoxes.length === 0) return;
 
   cartBoxes.forEach((cartbox) => cartbox.remove());
 
@@ -334,6 +389,34 @@ proceedBtn.addEventListener("click", () => {
     "Your order is being processed. Thank you for your patronage",
   ]);
 
+  proceedBtn.style.background = "#f4a97f";
+  localStorage.removeItem("cart");
+  // successAlert(1000, [
+  //   "Thank you for your patronage, you will be redirected in a second....",
+  // ]);
+  // //
+  const redirectToWhatsapp = function () {
+    const cartItems = [];
+    document.querySelectorAll(".cart-item").forEach((item) => {
+      cartItems.push({
+        name: item.querySelector(".cart-item-name").textContent,
+        price: item.querySelector(".cart-item-price").textContent,
+        image: item.querySelector("img").src,
+        quantity: item.querySelector(".qty-value").textContent,
+      });
+    });
+
+    let message = `Hi, i want to pay for ${productItemName}i need the account number`;
+
+    let phoneNumber = "2347045170938"; // 👉 change to client number
+
+    let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+  };
+  // redirectToWhatsapp(cartBox);
+
+  //
   if (cartBody.children.length - 1 === 0) {
     empty_cart_text.style.display = "flex";
   }
