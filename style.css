@@ -359,7 +359,7 @@ input:focus {
   background-color: var(--color-white);
   width: 30%;
   z-index: 98;
-  height: 95vh;
+  height: 95dvh;
   display: flex;
   flex-direction: column;
   box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
@@ -989,7 +989,7 @@ input:focus {
     font-size: 2rem;
   }
   .cart {
-    width: 100vw;
-    height: 80vh;
+    width: 100dvw;
+    height: 80dvh;
   }
 }

@@ -34,7 +34,6 @@ const proceedBtn = document.getElementById("proceedBtn");
 const section1 = document.querySelector(".section--1");
 const nav = document.querySelector(".nav-section");
 const heroSection = document.querySelector(".hero-section");
-const navHieght = nav.getBoundingClientRect().height;
 const slides = document.querySelectorAll(".banner");
 const slider = document.querySelector(".slider");
 const btnLeft = document.querySelector(".slider--left");
@@ -85,6 +84,7 @@ const addBackground = function (entries) {
   }
   // console.log(entry.boundingClientRect);
 };
+const navHieght = nav.getBoundingClientRect().height;
 
 const observer = new IntersectionObserver(addBackground, {
   root: null,
@@ -463,6 +463,8 @@ proceedBtn.addEventListener("click", () => {
   cart.style.transform = "translateX(120%)";
   pageBackdrop.style.display = "none";
 
+  percentngayeh;
+  atvvfabs;
   proceedBtn.style.background = "#f4a97f";
   localStorage.removeItem("cart");
 
