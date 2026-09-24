@@ -444,15 +444,15 @@ proceedBtn.addEventListener("click", () => {
     "Your order is being processed. Thank you for your patronage",
   ]);
   // build message and open WhatsApp
-  setTimeout(() => {
-    const itemsText = cartItems
-      .map((it, i) => `${i + 1}. ${it.name} x${it.quantity} (${it.price})`)
-      .join("\n");
-    const message = `Hi, I want to pay for the following items:\n${itemsText}\nPlease send account details.`;
-    const phoneNumber = "2347045170938"; // change to client number
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-  }, 1000);
+  // setTimeout(() => {
+  //   const itemsText = cartItems
+  //     .map((it, i) => `${i + 1}. ${it.name} x${it.quantity} (${it.price})`)
+  //     .join("\n");
+  //   const message = `Hi, I want to pay for the following items:\n${itemsText}\nPlease send account details.`;
+  //   const phoneNumber = "2347045170938"; // change to client number
+  //   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  //   window.open(url, "_blank");
+  // }, 1000);
 
   // now remove items and update UI
   cartBoxes.forEach((cartbox) => cartbox.remove());
